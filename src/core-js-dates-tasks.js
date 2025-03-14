@@ -17,10 +17,12 @@
  * '01 Jan 1970 00:00:00 UTC' => 0
  * '04 Dec 1995 00:12:00 UTC' => 818035920000
  */
-function dateToTimestamp(/* date */) {
-  throw new Error('Not implemented');
+function dateToTimestamp(date) {
+  const result = Date.parse(date);
+  return result;
 }
-
+dateToTimestamp('01 Jan 1970 00:00:00 UTC');
+dateToTimestamp('04 Dec 1995 00:12:00 UTC');
 /**
  * Returns the time in hh:mm:ss format from the received date.
  *
