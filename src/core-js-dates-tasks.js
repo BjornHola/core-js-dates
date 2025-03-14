@@ -33,10 +33,18 @@ dateToTimestamp('04 Dec 1995 00:12:00 UTC');
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
  * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
  */
-function getTime(/* date */) {
-  throw new Error('Not implemented');
-}
+function getTime(date) {
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+  const formattedHour = hour < 10 ? `0${hour}` : hour;
+  const formattedMinute = minute < 10 ? `0${minute}` : minute;
+  const formattedSecond = second < 10 ? `0${second}` : second;
 
+  return `${formattedHour}:${formattedMinute}:${formattedSecond}`;
+}
+console.log(getTime(new Date(2023, 5, 1, 8, 20, 55)));
+console.log(getTime(new Date(2015, 10, 20, 23, 15, 1)));
 /**
  * Returns the name of the day of the week for a given date string.
  *
