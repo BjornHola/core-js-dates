@@ -43,8 +43,8 @@ function getTime(date) {
 
   return `${formattedHour}:${formattedMinute}:${formattedSecond}`;
 }
-console.log(getTime(new Date(2023, 5, 1, 8, 20, 55)));
-console.log(getTime(new Date(2015, 10, 20, 23, 15, 1)));
+getTime(new Date(2023, 5, 1, 8, 20, 55));
+getTime(new Date(2015, 10, 20, 23, 15, 1));
 /**
  * Returns the name of the day of the week for a given date string.
  *
@@ -56,9 +56,14 @@ console.log(getTime(new Date(2015, 10, 20, 23, 15, 1)));
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(/* date */) {
-  throw new Error('Not implemented');
+function getDayName(date) {
+  const date1 = new Date(date);
+  const options = { weekday: 'long' };
+  return new Intl.DateTimeFormat('en-US', options).format(date1);
 }
+getDayName('01 Jan 1970 00:00:00 UTC');
+getDayName('03 Dec 1995 00:12:00 UTC');
+getDayName('2024-01-30T00:00:00.000Z');
 
 /**
  * Returns the date of the next Friday from a given date.
