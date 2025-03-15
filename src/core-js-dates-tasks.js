@@ -76,10 +76,16 @@ getDayName('2024-01-30T00:00:00.000Z');
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const dayOfWeek = date.getDay();
+  const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
+  const nextFriday = new Date(date);
+  nextFriday.setDate(date.getDate() + daysUntilFriday);
+  return nextFriday;
 }
-
+getNextFriday(new Date('2024-02-03T00:00:00Z'));
+getNextFriday(new Date('2024-02-13T00:00:00Z'));
+getNextFriday(new Date('2024-02-16T00:00:00Z'));
 /**
  * Returns the number of days in a specified month and year.
  *
