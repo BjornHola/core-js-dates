@@ -160,10 +160,22 @@ isDateInPeriod('2024-02-10', { start: '2024-02-02', end: '2024-03-02' });
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const newDate = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'UTC',
+    hour12: true,
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: '2-digit',
+  }).format(new Date(date));
+  return newDate;
 }
-
+formatDate('2024-02-01T15:00:00.000Z');
+formatDate('1999-01-05T02:20:00.000Z');
+formatDate('2010-12-15T22:59:00.000Z');
 /**
  * Returns the total number of weekend days (Saturdays and Sundays) in a specified month and year.
  *
