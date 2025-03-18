@@ -139,9 +139,15 @@ getCountDaysOnPeriod('2024-02-01T00:00:00.000Z', '2024-02-12T00:00:00.000Z');
  * '2024-02-02', { start: '2024-02-02', end: '2024-03-02' } => true
  * '2024-02-10', { start: '2024-02-02', end: '2024-03-02' } => true
  */
-function isDateInPeriod(/* date, period */) {
-  throw new Error('Not implemented');
+function isDateInPeriod(date, period) {
+  if (period.start <= date && date <= period.end) {
+    return true;
+  }
+  return false;
 }
+isDateInPeriod('2024-02-01', { start: '2024-02-02', end: '2024-03-02' });
+isDateInPeriod('2024-02-02', { start: '2024-02-02', end: '2024-03-02' });
+isDateInPeriod('2024-02-10', { start: '2024-02-02', end: '2024-03-02' });
 
 /**
  * Returns the date formatted in 'M/D/YYYY, hh:mm:ss a'.
