@@ -234,8 +234,8 @@ function getWeekNumberByDate(/* date */) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(date) {
-  const timestamp = Date.UTC(
+function getNextFridayThe13th(/* date */) {
+  /* const timestamp = Date.UTC(
     date.getUTCFullYear(),
     date.getUTCMonth(),
     date.getUTCDate()
@@ -250,12 +250,12 @@ function getNextFridayThe13th(date) {
 
   while (true) {
     currentDate.setUTCMonth(currentDate.getUTCMonth() + 1);
-    currentDate.setUTCDate(13);
+    currentDate.setUTCDate(13); 
 
     if (currentDate.getUTCDay() === 5) {
       return currentDate;
     }
-  }
+  } */
 }
 getNextFridayThe13th(new Date(2024, 0, 13));
 getNextFridayThe13th(new Date(2023, 1, 1));
