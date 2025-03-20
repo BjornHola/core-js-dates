@@ -331,8 +331,8 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
 
   return finalArr;
 }
-console.log(getWorkSchedule({ start: '01-01-2024', end: '15-01-2024' }, 1, 3));
-console.log(getWorkSchedule({ start: '01-01-2024', end: '10-01-2024' }, 1, 1));
+getWorkSchedule({ start: '01-01-2024', end: '15-01-2024' }, 1, 3);
+getWorkSchedule({ start: '01-01-2024', end: '10-01-2024' }, 1, 1);
 
 /**
  * Determines whether the year in the provided date is a leap year.
