@@ -346,10 +346,16 @@ getWorkSchedule({ start: '01-01-2024', end: '10-01-2024' }, 1, 1);
  * Date(2022, 2, 1) => false
  * Date(2020, 2, 1) => true
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = new Date(date.getFullYear());
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return true;
+  }
+  return false;
 }
-
+isLeapYear(new Date(2024, 2, 1));
+isLeapYear(new Date(2022, 2, 1));
+isLeapYear(new Date(2020, 2, 1));
 module.exports = {
   dateToTimestamp,
   getTime,
