@@ -283,9 +283,9 @@ function getQuarter(date) {
   }
   return 4;
 }
-console.log(getQuarter(new Date(2024, 1, 13)));
-console.log(getQuarter(new Date(2024, 5, 1)));
-console.log(getQuarter(new Date(2024, 10, 10)));
+getQuarter(new Date(2024, 1, 13));
+getQuarter(new Date(2024, 5, 1));
+getQuarter(new Date(2024, 10, 10));
 /**
  * Generates an employee's work schedule within a specified date range, based on a pattern of working and off days.
  * The start and end dates of the period are inclusive.
