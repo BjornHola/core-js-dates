@@ -219,9 +219,10 @@ getCountWeekendsInMonth(1, 2024);
  * Date(2024, 1, 23) => 8
  */
 function getWeekNumberByDate(/* date */) {
-  throw new Error('Not implemented');
+  /* const lastDay = new Date(date.getYear(), date.getMonth() + 1, 0).getDate();
+  let numberOfWeek = lastDay / 7; */
 }
-
+/* console.log(getWeekNumberByDate(2024, 0, 3)); */
 /**
  * Returns the date of the next Friday the 13th from a given date.
  * Friday the 13th is considered an unlucky day in some cultures.
@@ -233,10 +234,31 @@ function getWeekNumberByDate(/* date */) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
-}
+function getNextFridayThe13th(date) {
+  const timestamp = Date.UTC(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate()
+  );
 
+  const currentDate = new Date(timestamp);
+  currentDate.setUTCDate(13);
+
+  if (currentDate.getUTCDay() === 5 && currentDate.getTime() > timestamp) {
+    return currentDate;
+  }
+
+  while (true) {
+    currentDate.setUTCMonth(currentDate.getUTCMonth() + 1);
+    currentDate.setUTCDate(13);
+
+    if (currentDate.getUTCDay() === 5) {
+      return currentDate;
+    }
+  }
+}
+getNextFridayThe13th(new Date(2024, 0, 13));
+getNextFridayThe13th(new Date(2023, 1, 1));
 /**
  * Returns the quarter of the year for a given date.
  *
@@ -248,10 +270,22 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
+function getQuarter(date) {
+  const quarter = new Date(date.getMonth());
+  if (quarter <= 2) {
+    return 1;
+  }
+  if (quarter >= 3 && quarter <= 5) {
+    return 2;
+  }
+  if (quarter >= 6 && quarter <= 8) {
+    return 3;
+  }
+  return 4;
 }
-
+console.log(getQuarter(new Date(2024, 1, 13)));
+console.log(getQuarter(new Date(2024, 5, 1)));
+console.log(getQuarter(new Date(2024, 10, 10)));
 /**
  * Generates an employee's work schedule within a specified date range, based on a pattern of working and off days.
  * The start and end dates of the period are inclusive.
