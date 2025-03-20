@@ -304,9 +304,35 @@ getQuarter(new Date(2024, 10, 10));
  * { start: '01-01-2024', end: '15-01-2024' }, 1, 3 => ['01-01-2024', '05-01-2024', '09-01-2024', '13-01-2024']
  * { start: '01-01-2024', end: '10-01-2024' }, 1, 1 => ['01-01-2024', '03-01-2024', '05-01-2024', '07-01-2024', '09-01-2024']
  */
-function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
-  throw new Error('Not implemented');
+function getWorkSchedule(period, countWorkDays, countOffDays) {
+  const [startDay, startMonth, startYear] = period.start.split('-').map(Number);
+  const [endDay, endMonth, endYear] = period.end.split('-').map(Number);
+
+  const startDate = new Date(startYear, startMonth - 1, startDay);
+  const endDate = new Date(endYear, endMonth - 1, endDay);
+
+  const result = [];
+  const currentDate = startDate;
+
+  while (currentDate <= endDate) {
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const year = currentDate.getFullYear();
+
+    result.push(`${day}-${month}-${year}`);
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  const totalCycleDays = countWorkDays + countOffDays;
+
+  const finalArr = result.filter((_, index) => {
+    const cyclePosition = index % totalCycleDays;
+    return cyclePosition < countWorkDays;
+  });
+
+  return finalArr;
 }
+console.log(getWorkSchedule({ start: '01-01-2024', end: '15-01-2024' }, 1, 3));
+console.log(getWorkSchedule({ start: '01-01-2024', end: '10-01-2024' }, 1, 1));
 
 /**
  * Determines whether the year in the provided date is a leap year.
